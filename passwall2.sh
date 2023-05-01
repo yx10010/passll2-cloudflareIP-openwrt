@@ -1,7 +1,7 @@
 #!/bin/bash
 
-[[ ! -d "/mnt/sdb3/paniy/cloudflare" ]] && mkdir -p /mnt/sdb3/paniy/cloudflare
-cd /mnt/sdb3/paniy/cloudflare
+[[ ! -d "/mnt/sdb3/paniy/cloudflare" ]] && mkdir -p /mnt/sdb3/paniy/cloudflare        #/mnt/sdb3/paniy/cloudflare修改成自己的路径
+cd /mnt/sdb3/paniy/cloudflare                                                         #/mnt/sdb3/paniy/cloudflare修改成自己的路径
 
 opkg install jq
 
@@ -27,7 +27,7 @@ if [[ ! -f "CloudflareST" || ${version} != ${old_version} ]]; then
 	chmod +x CloudflareST
 fi
 
-##注意修改！！！
+
 /etc/init.d/haproxy stop
 /etc/init.d/passwall2 stop
 wait
@@ -43,10 +43,11 @@ if [[ -f "cf_result.txt" ]]; then
 	wait
 	uci commit passwall2
 	wait
-	##注意修改！！！
-	sed -i "s/$(uci get passwall.xxxxxxxxxx.address)/${first}/g" /etc/config/passwall
-	sed -i "s/$(uci get passwall.xxxxxxxxxx.address)/${second}/g" /etc/config/passwall
-	#sed -i "s/$(uci get passwall.xxxxxxxxxx.address)/${third}/g" /etc/config/passwall
+##注意修改！！！xxxxxxxxxx可以在openwrt终端用vi /etc/config/passwall2 查找到自己节点的字符串或者在openwrt的passwall2的web界面节点列表，然后点击修改，
+##复制浏览器最后的字符串就是对应的，多个节点会自动按照优先IP速度自动更换
+	sed -i "s/$(uci get passwall2.xxxxxxxxxx.address)/${first}/g" /etc/config/passwall2            
+	sed -i "s/$(uci get passwal2l.xxxxxxxxxx.address)/${second}/g" /etc/config/passwall2
+	#sed -i "s/$(uci get passwall2.xxxxxxxxxx.address)/${third}/g" /etc/config/passwall2
 	wait
 	uci commit passwall2
 	wait
