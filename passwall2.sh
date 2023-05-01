@@ -44,8 +44,8 @@ if [[ -f "cf_result.txt" ]]; then
 	uci commit passwall2
 	wait
 	##注意修改！！！
-	sed -i "s/$(uci get passwall.833a160527914460964d246323af9a6e.address)/${first}/g" /etc/config/passwall
-	sed -i "s/$(uci get passwall.0fd176bd14f542d6a4a1f81f00df8eff.address)/${second}/g" /etc/config/passwall
+	sed -i "s/$(uci get passwall.xxxxxxxxxx.address)/${first}/g" /etc/config/passwall
+	sed -i "s/$(uci get passwall.xxxxxxxxxx.address)/${second}/g" /etc/config/passwall
 	#sed -i "s/$(uci get passwall.xxxxxxxxxx.address)/${third}/g" /etc/config/passwall
 	wait
 	uci commit passwall2
